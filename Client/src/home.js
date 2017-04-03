@@ -19,8 +19,43 @@ const Bar = { template: '<div>bar</div>' }
 // Make sure to inject the router with the router option to make the
 // whole app router-aware.
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    http: {
 
-}).$mount('#app')
+
+    },
+    data:{
+        message:'node+mongo+vue',
+        currentGundam:{
+            name:'',
+            code:'',
+            releaseDate:''
+        },
+        gundams:[]
+    },
+    methods:{
+        getAllGundam:function(){
+            this.message='user click!'
+            return this.$http.get('/api/gundam').then(function(res){
+                this.gundams=res.data;
+                return this.gundams;
+            })
+        },
+        SaveGundam:function(){
+            this.$http.post('/api/gundam',this.currentGundam).then(function () {
+                this.getAllGundam().then(function(res){
+                    this.gundams=res;
+
+                })
+            })
+        }
+    },
+    ready:function(){
+
+        this.getAllGundam();
+        console.log('vue ready method called');
+    }
+
+});
 
 // Now the app has started!

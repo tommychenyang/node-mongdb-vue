@@ -5,37 +5,22 @@ var express = require('express');
 var bodyParser= require('body-parser');
 var mongoose =require('mongoose');
 var path= require('path');
+
 var gundam= require('./Server/Model/Gundam');
 var router=express.Router();
 
 var app = express();
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/Client/'));
-//app.engine('html', require('ejs').renderFile);
-var root = path.dirname(require.main.filename);
-//app.set('view engine', 'html');
-//app.set('views', path.join(__dirname));
+
 app.set('port', (process.env.PORT || 5000));
+var routes=require('./Server/Routes/apiRoutes');
 var gundammodel = mongoose.model('gundam');
+routes(app);
 
 
-router.use(function(req,res,next){
-    console.log('something is happening');
-    next();
-});
-app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
-});
-router.route('/gundam')
-    .get(function (req, res) {
-        gundammodel.find(function(err,gundams){
-            if(err)
-                res.send(err);
-            res.json(gundams);
-        })
-    });
 
-app.use('/api',router);
+
 var distFolder=path.resolve(__dirname, '../Client/dist');
 var srcFolder=path.resolve(__dirname);
 var staticUrl='/lib';

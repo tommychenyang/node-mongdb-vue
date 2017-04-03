@@ -13,6 +13,7 @@ gulp.task('inject', function () {
     var sources = gulp.src([
                             'node_modules/vue/dist/vue.min.js',
                             'node_modules/vue-router/dist/vue-router.min.js',
+                            'node_modules/vue-resource/dist/vue-resource.js',
                             'Client/src/**/*.js']);
 
     return target.pipe(inject(sources,injectOptions))

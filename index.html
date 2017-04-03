@@ -11,14 +11,39 @@
 <div id="app">
     <h1>Hello App!</h1>
     <p>
-
+        {{message}}
     </p>
+    <button v-on:click="getAllGundam">Gel all</button>
+    <button v-on:click="SaveGundam">Save</button>
+    <p>{{currentGundam.name}} + {{currentGundam.code}}</p>
+    <section>
+        <form>
+            <section>
+                <label for="gundamname" >Name: </label>
+                <input id="gundamname" type="text" v-model="currentGundam.name">
+            </section>
+            <section>
+                <label for="gundamname" >Code: </label>
+                <input id="gundamcode" type="text" v-model="currentGundam.code">
+            </section>
+        </form>
+
+
+    </section>
+    <section>
+        <ul>
+            <li v-for="item in gundams">
+                {{item.name}}
+            </li>
+        </ul>
+    </section>
     <!-- route outlet -->
     <!-- component matched by the route will render here -->
 </div>
 <!-- inject:js -->
 <script src="lib/node_modules/vue/dist/vue.min.js"></script>
 <script src="lib/node_modules/vue-router/dist/vue-router.min.js"></script>
+<script src="lib/node_modules/vue-resource/dist/vue-resource.js"></script>
 <script src="lib/Client/src/home.js"></script>
 <!-- endinject -->
 </body>
