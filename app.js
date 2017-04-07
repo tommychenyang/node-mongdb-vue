@@ -11,24 +11,25 @@ var router=express.Router();
 
 var app = express();
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/Client/'));
-
+var distFolder=path.join(__dirname);
+app.use(express.static(distFolder));
 app.set('port', (process.env.PORT || 5000));
 var routes=require('./Server/Routes/apiRoutes');
 var gundammodel = mongoose.model('gundam');
-routes(app);
 
 
 
 
-var distFolder=path.resolve(__dirname, '../Client/dist');
+
+
 var srcFolder=path.resolve(__dirname);
 var staticUrl='/lib';
-app.use(express.static(srcFolder));
 app.use('/api',router);
-app.use(staticUrl, express.static(srcFolder));
-app.use(staticUrl, function(req, res, next) {
-    res.send(404); // If we get here then the request for a static file is invalid
+
+routes(app);
+app.all('/*', function(req, res) {
+    // Just send the index.html for other files to support HTML5Mode
+    return  res.sendFile('index.html', { root:  path.resolve(__dirname, 'dist') });
 });
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
