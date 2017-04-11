@@ -34,11 +34,12 @@ const PROD = process.env.NODE_ENV === "production";
 
 if (PROD) {
     const PORT=config.prod.port;
-    app.listen(PORT);
+    app.listen(app.get('port'));
 } else {
-    const PORT=config.dev.port;
+    const PORT=config.dev.port-1;
     console.log(PORT);
-    app.listen(PORT-1);
+
+    app.listen(PORT,'localhost');
 
 }
 //app.listen(app.get('port'), function() {
