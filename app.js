@@ -38,7 +38,6 @@ if (PROD) {
 } else {
     const PORT=config.dev.port;
     console.log(PORT);
-
     app.listen(PORT-1);
 
 }
