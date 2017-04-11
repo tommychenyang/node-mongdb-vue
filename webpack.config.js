@@ -1,7 +1,9 @@
 var path=require('path');
 var webpack =require('webpack');
 var HtmlWebpackPlugin= require('html-webpack-plugin');
+var config=require('./config');
 module.exports = {
+    devtool:'eval-source-map',
     entry: path.join(__dirname, 'Client/main.js'),
     output: {
         path: path.join(__dirname,'dist'),
@@ -18,6 +20,14 @@ module.exports = {
             test: /\.vue$/,
             loader: 'vue-loader'
         }]
+    },
+    devServer: {
+        proxy: {
+            '*': {
+                target:'http://localhost:'+(config.dev.port-1),
+                secure:false
+            }
+        }
     },
     resolve: {      alias: {
         'vue': 'vue/dist/vue.js'
