@@ -3,14 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "engines": {
-    "node": "7.1.0",
-    "npm": "3.10.9"
-  },
+
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "dev": "webpack-dev-server --config webpack.config.js",
-    "postinstall": "npm run build",
     "start": "node app.js"
   },
   "author": "cy",
