@@ -16,10 +16,17 @@ module.exports = {
             test: /\.js$/,
             loader: 'babel-loader',
             exclude: /node_modules/
-        }, {
+            },
+
+            {
             test: /\.vue$/,
             loader: 'vue-loader'
-        }]
+            },
+            {
+                test: [/\.js$/,/\.vue$/],
+                loader: 'eslint-loader',
+                exclude: /node_modules/
+            }]
     },
     devServer: {
         proxy: {
@@ -29,6 +36,7 @@ module.exports = {
             }
         }
     },
+
     resolve: {      alias: {
         'vue': 'vue/dist/vue.js'
     }

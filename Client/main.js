@@ -1,10 +1,12 @@
 import Vue from 'vue';
 import App from './app.vue';
-//let router = require("./core/routes").default;
-
+import VueResource from 'vue-resource';
 import router from './core/routes';
-new Vue({
-  el: 'app',
-  router,
-  render: h => h(App)
-})
+
+Vue.use(VueResource);
+
+new Vue({// eslint-disable-line no-new
+    el: 'app',
+    router,
+    render: h => h(App)
+});

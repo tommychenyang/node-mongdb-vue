@@ -10,7 +10,7 @@
         <!-- specify the link by passing the `to` prop. -->
         <!-- <router-link> will be rendered as an `<a>` tag by default -->
         <router-link to="/home">Go to dashboard</router-link>
-        <router-link to="/">Go to Bar</router-link>
+        <router-link to="/gundam">Go to gundam</router-link>
     </p>
 </div>
 </template>
@@ -20,14 +20,14 @@
         data () {
             return {
                 count: 0
-            }
+            };
         },
         methods: {
             increment () {
                 this.count ++;
             }
         }
-    }
+    };
 </script>
 
 <style>
