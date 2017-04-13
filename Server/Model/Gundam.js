@@ -10,6 +10,7 @@ db.once('open', function() {
     console.log('connected');
 });
     var gundamSchema = mongoose.Schema({
+        id: Number,
         name: String,
         code: String,
         releaseDate: Date

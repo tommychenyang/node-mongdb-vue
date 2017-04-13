@@ -1,9 +1,9 @@
 <template>
-    <div id="gundam">
+    <div id='gundam'>
         <h1>Gundam page</h1>
         <div>
             <ul>
-                <li v-for="item in gundams">
+                <li v-for='item in gundams'>
                     {{item.name}}
                 </li>
             </ul>
@@ -15,20 +15,15 @@
 
 <script>
     export default {
-        data () {
+        data() {
             return {
-                gundams: []
+                count: 0
             };
         },
-        methods: {
-            getAll: function () {
-                this.$http.get('/api/gundam').then(function (result) {
-                    this.gundams = result.data;
-                });
+        computed: {
+            gundams() {
+                return this.$store.state.gundam.gundams;
             }
-        },
-        mounted () {
-            this.getAll();
         }
     };
 </script>

@@ -20,10 +20,6 @@ var routes=require('./Server/Routes/apiRoutes');
 var gundammodel = mongoose.model('gundam');
 
 
-
-
-
-
 var srcFolder=path.resolve(__dirname);
 var staticUrl='/lib';
 app.use('/api',router);
