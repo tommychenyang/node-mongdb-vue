@@ -4,18 +4,17 @@
         <div>
             <ul>
                 <li v-for='item in gundams'>
-                    {{item.name}}
+                    <gundamItem :item='item'></gundamItem> 
                 </li>
             </ul>
         </div>
-
     </div>
 
 </template>
 
 <script>
 	import { mapActions, mapGetters } from 'vuex';
-
+    import gundamGridItem from './gundamGridItem.vue';
     export default {
         data() {
             return {
@@ -24,12 +23,17 @@
         },
         computed: {
             ...mapGetters({
-                gundams: 'gundam/gundams'
+                gundams: 'gundam/gundams',
+                selected: 'gundam/selected'
             })
+        },
+        components: {
+            'gundamItem': gundamGridItem
         },
         methods: {
             ...mapActions({
-                load: 'gundam/load'
+                load: 'gundam/load',
+                delete: 'gundam/deleteRow'
             })
         },
         created: function() {

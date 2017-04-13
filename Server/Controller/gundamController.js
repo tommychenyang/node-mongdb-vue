@@ -3,11 +3,12 @@
  */
 'use strict';
 
-
+var ObjectId = require('mongodb').ObjectID;
 var mongoose = require('mongoose'),
     Gundam = mongoose.model('gundam');
-
-exports.list_all_gundams = function(req, res) {
+var apiController={};
+apiController.list_all_gundams = function(req, res) {
+    console.log(req);
     Gundam.find({}, function(err, task) {
         if (err)
             res.send(err);
@@ -15,10 +16,7 @@ exports.list_all_gundams = function(req, res) {
     });
 };
 
-
-
-
-exports.create_a_gundam = function(req, res) {
+apiController.create_a_gundam = function(req, res) {
     var new_gundam = new Gundam(req.body);
     new_gundam.save(function(err, gundam) {
         if (err)
@@ -28,7 +26,7 @@ exports.create_a_gundam = function(req, res) {
 };
 
 
-exports.read_a_task = function(req, res) {
+apiController.read_a_task = function(req, res) {
     Task.findById(req.params.taskId, function(err, task) {
         if (err)
             res.send(err);
@@ -37,7 +35,7 @@ exports.read_a_task = function(req, res) {
 };
 
 
-exports.update_a_task = function(req, res) {
+apiController.update_a_task = function(req, res) {
     Task.findOneAndUpdate(req.params.taskId, req.body, {new: true}, function(err, task) {
         if (err)
             res.send(err);
@@ -46,14 +44,14 @@ exports.update_a_task = function(req, res) {
 };
 
 
-exports.delete_a_task = function(req, res) {
+apiController.delete_a_gundam = function(req, res) {
 
-
-    Task.remove({
-        _id: req.params.taskId
+    Gundam.remove({
+        _id: req.params._id
     }, function(err, task) {
         if (err)
             res.send(err);
         res.json({ message: 'Task successfully deleted' });
     });
 };
+module.exports = apiController;

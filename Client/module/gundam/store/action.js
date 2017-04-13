@@ -25,7 +25,7 @@ export const load = ({ commit }) => {
 };
 
 export const saveRow = ({ commit }, model) => {
-    Vue.$http.post(NAMESPACE, model).then((response) => {
+    Vue.http.post(NAMESPACE, model).then((response) => {
         const res = response.data;
         if (res.status === 200 && res.data) {
             commit(ADD, res.data);
@@ -38,7 +38,7 @@ export const saveRow = ({ commit }, model) => {
     });
 };
 export const updateRow = ({ commit }, model) => {
-    Vue.$http.put(NAMESPACE, model).then((response) => {
+    Vue.http.put(NAMESPACE, model).then((response) => {
         if (response.status === 200 && response.data) {
             commit(UPDATE, response.data);
             commit(SELECT, response.data, false);
@@ -51,7 +51,7 @@ export const updateRow = ({ commit }, model) => {
 };
 
 export const deleteRow = ({ commit }, model) => {
-    Vue.$http.delete(NAMESPACE, model._id).then((response) => {
+    Vue.http.delete(NAMESPACE + '/' + model._id).then((response) => {
         if (response.status === 200 && response.data) {
             commit(REMOVE, response.data);
             commit(SELECT, response.data, false);

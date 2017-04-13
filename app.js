@@ -9,26 +9,21 @@ var config=require('./config');
 var path= require('path');
 
 var gundam= require('./Server/Model/Gundam');
-var router=express.Router();
 
 var app = express();
+var router=express.Router();
+
 app.use(bodyParser.json());
 var distFolder=path.join(__dirname);
 app.use(express.static(distFolder));
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT));
 var routes=require('./Server/Routes/apiRoutes');
-var gundammodel = mongoose.model('gundam');
-app.disable('etag');
-
-
-var srcFolder=path.resolve(__dirname);
-var staticUrl='/lib';
-app.use('/api',router);
-
 routes(app);
-app.use(function(req, res, next) {
-  req.headers['if-none-match'] = 'no-match-for-this';
-  next();    
+app.use('/api', router);
+
+app.get('/', function(){
+    console.log('firing');
+
 });
 const PROD = process.env.NODE_ENV === "production";
 
@@ -42,6 +37,3 @@ if (PROD) {
     app.listen(PORT,'localhost');
 
 }
-//app.listen(app.get('port'), function() {
-//    console.log('Node app is running on port', app.get('port'));
-//});
