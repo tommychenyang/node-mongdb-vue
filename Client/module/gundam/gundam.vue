@@ -14,7 +14,7 @@
 </template>
 
 <script>
-	import { mapActions } from 'vuex';
+	import { mapActions, mapGetters } from 'vuex';
 
     export default {
         data() {
@@ -23,9 +23,9 @@
             };
         },
         computed: {
-            gundams() {
-                return this.$store.state.gundam.gundams;
-            }
+            ...mapGetters({
+                gundams: 'gundam/gundams'
+            })
         },
         methods: {
             ...mapActions({
