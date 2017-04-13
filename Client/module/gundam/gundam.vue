@@ -14,6 +14,8 @@
 </template>
 
 <script>
+	import { mapActions } from 'vuex';
+
     export default {
         data() {
             return {
@@ -24,6 +26,14 @@
             gundams() {
                 return this.$store.state.gundam.gundams;
             }
+        },
+        methods: {
+            ...mapActions({
+                load: 'gundam/load'
+            })
+        },
+        created: function() {
+            this.load();
         }
     };
 </script>

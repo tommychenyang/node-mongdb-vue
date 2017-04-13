@@ -18,6 +18,7 @@ app.use(express.static(distFolder));
 app.set('port', (process.env.PORT || 5000));
 var routes=require('./Server/Routes/apiRoutes');
 var gundammodel = mongoose.model('gundam');
+app.disable('etag');
 
 
 var srcFolder=path.resolve(__dirname);
@@ -25,7 +26,10 @@ var staticUrl='/lib';
 app.use('/api',router);
 
 routes(app);
-
+app.use(function(req, res, next) {
+  req.headers['if-none-match'] = 'no-match-for-this';
+  next();    
+});
 const PROD = process.env.NODE_ENV === "production";
 
 if (PROD) {

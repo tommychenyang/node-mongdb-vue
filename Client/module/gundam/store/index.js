@@ -54,7 +54,7 @@ const state = {
 
 import * as getters from './getter';
 import * as actions from './action';
-
+console.log(actions);
 export default {
     namespaced: true,
     state,

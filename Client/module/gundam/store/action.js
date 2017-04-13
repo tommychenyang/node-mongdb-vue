@@ -12,12 +12,12 @@ export const clearSelection = ({ commit }) => {
 };
 
 export const load = ({ commit }) => {
-    Vue.$http.get(NAMESPACE).then((response) => {
-        const res = response.data;
-        if (res.status === 200 && res.data) {
-            commit(LOAD, res.data);
+    Vue.http.get(NAMESPACE).then((response) => {
+        console.log('loading');
+        if (response.status === 200 && response.data) {
+            commit(LOAD, response.data);
         } else {
-            console.error('Request error!', res.error);
+            console.error('Request error!', response.error);
         }
     }).catch((response) => {
         console.error('Request error!', response.statusText);

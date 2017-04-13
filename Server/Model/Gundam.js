@@ -2,7 +2,7 @@
  * Created by chenya3 on 3/29/2017.
  */
 var mongoose = require('mongoose');
-mongoose.connect(process.env.ConnectionString || 'mongodb://localhost:27017/node-mongo-vue');
+mongoose.connect(process.env.ConnectionString || 'mongodb://tommychenyang:7896321psn@ds145370.mlab.com:45370/node-mongo-vue');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
