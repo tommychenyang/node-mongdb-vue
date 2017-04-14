@@ -6,8 +6,7 @@ var path=require('path');
 
 
 var config = require(path.join(process.cwd(), 'config.js'));
-process.env.node_env == 'production'
-mongoose.connect(process.env.node_env == 'production'? config.prod.connectionString : config.dev.connectionString);
+mongoose.connect(process.env.NODE_ENV == 'production'? config.prod.connectionString : config.dev.connectionString);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
