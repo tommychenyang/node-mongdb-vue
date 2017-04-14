@@ -1,13 +1,23 @@
 <template>
     <div id='gundam'>
         <h1>Gundam page</h1>
-        <div>
+        <div class= 'gundam-form'>
+            <form>
+                <input type= 'text' placeholder='Type name' v-model='editingRow.name'/>
+                <input type='submit' text= 'Save' @click='add(editingRow);editingRow={}'/>
+                
+            </form>
+        </div>
+        
+        <div class= 'gundam-grid'>
             <ul>
                 <li v-for='item in gundams'>
                     <gundamItem :item='item'></gundamItem> 
                 </li>
             </ul>
         </div>
+        
+        
     </div>
 
 </template>
@@ -18,6 +28,9 @@
     export default {
         data() {
             return {
+                editingRow: {
+                    name: ''
+                },
                 count: 0
             };
         },
@@ -33,6 +46,7 @@
         methods: {
             ...mapActions({
                 load: 'gundam/load',
+                add: 'gundam/saveRow',
                 delete: 'gundam/deleteRow'
             })
         },
@@ -43,4 +57,11 @@
 </script>
 
 <style>
+    .gundam-grid{
+        margin:20px 20px 20px 20px;
+
+    }
+    .gundam-form{
+        border: 1px solid #333;
+    }
 </style>

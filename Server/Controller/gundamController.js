@@ -8,7 +8,6 @@ var mongoose = require('mongoose'),
     Gundam = mongoose.model('gundam');
 var apiController={};
 apiController.list_all_gundams = function(req, res) {
-    console.log(req);
     Gundam.find({}, function(err, task) {
         if (err)
             res.send(err);
@@ -51,7 +50,8 @@ apiController.delete_a_gundam = function(req, res) {
     }, function(err, task) {
         if (err)
             res.send(err);
-        res.json({ message: 'Task successfully deleted' });
+
+        res.send('deleted');
     });
 };
 module.exports = apiController;
