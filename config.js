@@ -8,6 +8,6 @@ module.exports={
     },
     prod:{
         port:process.env.PORT,
-        connectionString:'mongodb://tommychenyang:7896321psn@ds145370.mlab.com:45370/node-mongo-vue'
+        connectionString: process.env.ConnectionString//'mongodb://tommychenyang:7896321psn@ds145370.mlab.com:45370/node-mongo-vue'
     }
 }
