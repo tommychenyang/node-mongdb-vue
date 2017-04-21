@@ -6,7 +6,7 @@
             </v-card-title>
         </v-card-row>
         <div>
-            <v-btn primary dark v-on:click='deleteRow(item)'>Delete</v-btn>
+            <v-btn primary dark @click.native='deleteRow(item)'>Delete</v-btn>
         </div>      
     </v-card>
 </template>
