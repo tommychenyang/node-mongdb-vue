@@ -4,11 +4,11 @@
         <div class= 'gundam-form'>
             <form>
                 <input type= 'text' placeholder='Type name' v-model='editingRow.name'/>
-                <input type='submit' text= 'Save' @click='add(editingRow);editingRow={}'/>
                 
             </form>
+            
         </div>
-        
+        <v-btn primary dark @click.native='add(editingRow);editingRow={}'>Save </v-btn>
         <div class= 'gundam-grid'>
             <ul>
                 <li v-for='item in gundams'>
