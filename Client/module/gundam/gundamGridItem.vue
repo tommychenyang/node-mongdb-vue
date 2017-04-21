@@ -1,10 +1,14 @@
 <template>
-    <div id='gundamGridItem'>
-        <h4> {{ item.name }} </h4>
+    <v-card id='gundamGridItem'>
+        <v-card-row class='green darken-1'>
+            <v-card-title>
+                <span class='white--text'> {{ item.name }} </span>
+            </v-card-title>
+        </v-card-row>
         <div>
-            <button v-on:click='deleteRow(item)'>Delete</button>
-        </div>
-    </div>
+            <v-btn primary dark v-on:click='deleteRow(item)'>Delete</v-btn>
+        </div>      
+    </v-card>
 </template>
 
 <script>
@@ -25,5 +29,6 @@
 </script>
 
 <style>
+    
 </style>
 
